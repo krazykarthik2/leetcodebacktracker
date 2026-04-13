@@ -3,9 +3,8 @@ import cloudscraper
 from notion_client import Client
 from datetime import datetime, timezone, timedelta
 
-# --- CONFIGURATION ---
-NOTION_TOKEN = os.environ.get("NOTION_TOKEN", "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")
-DATABASE_ID = os.environ.get("DATABASE_ID", "341c4db880d9804680c1e847537f76ea")
+NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
+DATABASE_ID = os.environ.get("DATABASE_ID")
 LEETCODE_USERNAME = "karthikkrazy"
 
 notion = Client(auth=NOTION_TOKEN)
