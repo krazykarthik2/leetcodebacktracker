@@ -1,0 +1,28 @@
+name: LeetCode Backlog Sync
+
+on:
+  schedule:
+    # 20:00 UTC = 01:30 IST
+    - cron: '0 20 * * *'
+  workflow_dispatch: # Allows you to run it manually for testing
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install cloudscraper notion-client
+
+      - name: Run Sync Script
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+        run: python leetcode_sync.py
